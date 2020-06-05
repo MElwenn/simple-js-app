@@ -1,19 +1,23 @@
-var pokemonList = ['Bulbasaur', 'Pikachu', 'Weedle'];
+var pokemonList = [' Bulbasaur', ' Pikachu', ' Weedle'] // array named pokemonList
 
-var pokemon = {
-  name: 'Bulbasaur',
+var pokemonBulbasaur = {
+  name: ' Bulbasaur',
   height: 7,
-  types: ['grass','poison']
+  types: [' grass',' poison']
 };
 
-var pokemon = {
-  name: 'Pikachu',
+var pokemonPikachu = {
+  name: ' Pikachu',
   height: 4,
-  types: ['electric']
+  types: [' electric']
 };
 
-var pokemon = {
-  name: 'Weedle',
+var pokemonWeedle = {
+  name: ' Weedle',
   height: 3,
-  types: ['bug','poison']
+  types: [' bug',' poison']
 };
+
+document.write(pokemonList);
+
+document.write(pokemonWeedle.types);
