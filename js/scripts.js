@@ -4,7 +4,7 @@ var repository = [
   {
     //  var pokemon = {
       name: 'Bulbasaur',
-      height: [7, ' Wow, that’s big!'],
+      height: 7,
       types: ['grass','poison']
       //}
   },
@@ -31,7 +31,7 @@ var repository = [
     if ( i == 4 ) {                              // this line MUST be correct
   		break;                                     // this line MUST be correct
     }                                            // this line MUST be correct
-    if (repository.height > 5) {  //check if the height is above the value 5
+    if (repository[i].height > 5) {  //check if the height is above the value 5
       document.write("<p>" + repository[i].name + "<p> height: </p>" + repository[i].height + "<p> Wow, that’s big!</p>");
       /* document.write(pokemonList[i] + repository.pokemon.height + '<p>Wow, that’s big!</p>'); */
     }
