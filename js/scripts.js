@@ -1,78 +1,32 @@
 // array pokemonList
-var pokemonList = ['Bulbasaur (height: 7) ', 'Pikachu (height: 4) ', 'Weedle (height: 3) '] //workaround for DOES NOT WORK se below
-var repository = [
+var pokemonList = [
   {
-    //  var pokemon = {
-      name: 'Bulbasaur',
-      height: 7,
-      types: ['grass','poison']
-      //}
+    name: 'Bulbasaur',
+    height: 7,
+    types: ['grass',' poison ']
   },
   {
-      //var pokemon = {
-      name: 'Pikachu',
-      height: 4,
-      types: ['electric']
-      //}
+    name: 'Pikachu',
+    height: 4,
+    types: ['electric ']
   },
   {
-      //var pokemon = {
-      name: 'Weedle',
-      height: 3,
-      types: ['bug','poison']
-      //}
+    name: 'Weedle',
+    height: 3,
+    types: ['bug',' poison ']
   }
-]; // End of repository
+];
 
-repository.forEach((repository) => {
-  console.log(repository);
+// forEach Loop
+pokemonList.forEach(function(pokemon) {
+  if (pokemon.height > 5) {              //check if the height is above the value 5 to display Wow that's big
+    document.write('<p>' + pokemon.name + ' height: ' + pokemon.height + ' Wow, that’s big!' + '</p>' + pokemon.types);
+  }
+  else {
+    document.write('<p>' + pokemon.name + ' height: ' + pokemon.height + '</p>' + pokemon.types);
+  }
 });
 
-/*
-}
-document.write(element));
-*/
-
-//Object.keys(repository).forEach(function(name) {
-//  document.write(repository['name', 'height']);
-//});
-
-
-
-
-/* pokemonList.forEach(function(repository){
-  document.write (repository.name + repository.height + 'hello');
-});  DOES NOT WORK */
-
-/* var pokemonList = ['Bulbasaur (height: 7)' /* Wow, that’s big!'*/ //, 'Pikachu (height: 4) ', 'Weedle (height: 3) '] //workaround for DOES NOT WORK se below
-
-
-
-/*
-
-function printArrayDetails(list){
-  /*for (var i = 0; i < pokemonList.length; i++) { // this line MUST be correct */
-  /*for (var i = 0; i < list.length; i++) { */       // FOR-loop used in task 1.3
-//  list.forEach(function(pokemonList){
-  /*  if ( i == 4 ) {   */                           // this line MUST be correct
-  /*		break;          */                           // this line MUST be correct
-  /*  }                 */                           // this line MUST be correct
-  /*  if (repository[i].height > 5) { */ //check if the height is above the value 5
-//    if (repository.height > 5) {
-      /* document.write("<p>" + repository[i].name + "<p> height: </p>" + repository[i].height + "<p> Wow, that’s big!</p>"); */
-      /* document.write('<p>' + list[i].name + '<p> height: </p>' + repository[i].height + '<p> Wow, that’s big!</p>'); */
-//      return (repository.name + repository.height + '<p> Wow, that’s big!</p>');
-//    }
-
-//    else {
-      /* document.write('<p>' + repository[i].name + '<p> height: </p>' + repository[i].height + '</p>'); */
-      /* document.write('<p>' pokemonList[i] + repository.pokemon.height + '</p>');*/ //+ '<p>height: </p>' + repository.height); DOES NOT WORK
-//      return (repository.name + repository.height);
-//    }                                              //+ '<p>height: </p>' + repository.pokemon.height); DOES NOT WORK
-//  }
-//}
-
-//printArrayDetails(pokemonList); // function call
 
 /* calculations are done here */
 function divide(dividend, divisor) { //divide function
