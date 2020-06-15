@@ -37,7 +37,7 @@
         // create a button Element
         var button = document.createElement('button');
         var container = document.querySelector('.container');
-        container.innerHTML = '<button>Click me</button>';
+        container.innerHTML = '<button>Bulbasaur</button>';
         //container.innerHTML.add(pokemonList.name);
         button.classList.add(pokemonList.name);
         button.innerText.add(pokemonList.name);
