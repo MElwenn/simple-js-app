@@ -7,3 +7,6 @@ body {
     line-height: 1.6;
     text-align: center;
 }
+.selected{
+  border: 5px red solid;
+}
