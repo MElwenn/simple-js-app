@@ -1,6 +1,6 @@
 body {
     background-color: #F5F5F5;
-    color: #333333;
+    color: #666666;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -9,11 +9,12 @@ body {
 }
 
 .heading1{
+  color: inherit;
   text-align: center;
 }
 
 .container{
-  color: #333333;
+  color: inherit;
   background-color: #CCCCCC;
   height: 50px;
   margin: 10px;
