@@ -7,6 +7,35 @@ body {
     line-height: 1.6;
     text-align: center;
 }
+
+.heading1{
+  text-align: center;
+}
+
+.container{
+  color: #333333;
+  background-color: #CCCCCC;
+  height: 50px;
+  margin: 10px;
+  list-style-type: none;
+  width: 100%;
+  padding: 20px;
+}
+
 .selected{
-  border: 5px red solid;
+  border: 5px grey solid;
+}
+
+.button {
+  font-family: inherit;
+  background-color: #6699CC;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s opacity;
+  white-space: nowrap; /* aviod the button to line break */
 }
