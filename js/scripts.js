@@ -27,31 +27,19 @@
     pokemonList.forEach(function (pokemonList) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
 
     /* Task 1.6 starts here */
-        var inputs = document.querySelectorAll('input');
-        inputs.forEach(function (input) {
-          // what exactly needs to be inside this?
-        });
-        inputs[0]; // Get the first input
-        // create a list element
-        var listItem = document.createElement('li');
-        // create a button Element
-        var button = document.createElement('button');
-        var container = document.querySelector('.container');
-        container.innerHTML = '<button>Bulbasaur</button>';
-        //container.innerHTML.add(pokemonList.name);
-        button.classList.add(pokemonList.name);
-        button.innerText.add(pokemonList.name);
-        container.appendChild(button);
+        var hitList = document.querySelectorAll('ul');       //create a 'ul' element and assign  it to ul in HTML
+        var listItem = document.createElement('li');          //create a list element
+        var container = document.querySelector('.container'); //create a container around the button (one hitListItem within the hitList)
+        var button = document.createElement('button');        //create a button element
+        container.innerHTML = '<button>Bulbasaur</button>';   //set button innerText to be the Pokémon's name
+        //Add a class to the button using the classList.add method...
+        button.classList.add(class ='button');                         //this version works but throws a browser ERROR
+        //button.classList.add('button');                              //this version doesn't throw a browser ERROR but doesn' work
+        //document.getElementById('button').classList.add('.button');  //this version doesn't throw a browser ERROR but doesn' work
+        listItem.appendChild(button);  //append the button to the list item as its child
+        hitList.appendChild(listItem); //append the list item to the unordered list as its child
     /* Task 1.6 ends here */
 
-    /* Task 1.5 code starts here
-    if (pokemonList.height > 5) {              //check if the height is above the value 5 to display Wow that's big
-      document.write('<p>' + pokemonList.name + ' height: ' + pokemonList.height + ' Wow, that’s big!' + '</p>' + pokemonList.types);
-    }
-    else {
-      document.write('<p>' + pokemonList.name + ' height: ' + pokemonList.height + '</p>' + pokemonList.types);
-    }
-    Task 1.5 code ends here */
   });
 
     return {   //return all items from the pokemonList and all that might be added in addition
