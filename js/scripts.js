@@ -26,7 +26,7 @@
 
     pokemonList.forEach(function (pokemonList) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
 
-    /* Task 1.6 starts here */
+    /* Task 1.6 starts here, including function addListItem and code polishing using IIFE */
         //function addListItem('pokemon'){  //add a function addListItem with parameter 'pokemon'
         var pokemon = function(addListItem) {
           var hitList = document.querySelectorAll('ul');       //create a 'ul' element and assign  it to ul in HTML
