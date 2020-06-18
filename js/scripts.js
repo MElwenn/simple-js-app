@@ -31,9 +31,18 @@
         var pokemon = function(addListItem) {
           var hitList = document.querySelectorAll('ul');       //create a 'ul' element and assign  it to ul in HTML
           var listItem = document.createElement('li');          //create a list element
+          var expandContent = function showDetails(pokemon) { //create function showDetails
+            //console.log(pokemonList.name);
+            console.log(arguments[0]);
+          };
           var container = document.querySelector('.container'); //create a container around the button (one hitListItem within the hitList)
-          var button = document.createElement('button');        //create a button element
           container.innerHTML = '<button>Bulbasaur</button>';   //set button innerText to be the Pokémon's name
+          var button = document.createElement('button');        //create a button element
+          button.addEventListener('click', function (event) {   //event listener to each newly created button
+            console.log(event);
+            call.showDetails('pokemon');
+          });
+
           //Add a class to the button using the classList.add method...
           button.classList.add(class ='button');                         //this version works but throws a browser ERROR
           //button.classList.add('button');                              //this version doesn't throw a browser ERROR but doesn' work
@@ -46,7 +55,7 @@
 
   });
 
-    return(addListItem){   //return all items from the pokemonList to make it available outside the IIFE
+  return(addListItem){   //return all items from the pokemonList to make it available outside the IIFE
     add: add,
     getAll: getAll
   };
