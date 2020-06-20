@@ -44,7 +44,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
 
 /* Task 1.6 starts here, including function addListItem and code polishing using IIFE */
   //function addListItem('pokemon'){  //add a function addListItem with parameter 'pokemon'
-  //var addListItem = what exactly, as it is th whole function below?
+
   function addListItem(item) { //add a function addListItem with parameter 'pokemon'
     var hitList = document.querySelectorAll('ul')[0];        //create a 'ul' element and assign  it to ul in HTML
     //var pokemon = function(addListItem) {  MY WRONG VERSION
@@ -79,7 +79,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
   return{   //return all items from the pokemonList to make it available outside the IIFE
     add: add,
     getAll: getAll,
-    addListItem: addListItem
+    addListItem: addListItem // Ask Shan: What exactly do we want to return here?
   };
 })();
 /* Wrapping IIFE end */
