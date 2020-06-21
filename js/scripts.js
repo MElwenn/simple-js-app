@@ -1,32 +1,14 @@
 /* wrapping all global variables in 'Immediately Invoked Function Expression (or IIFE)' to avoid external code conflicts */
 var pokemonRepository = (function () { //This is the IIFE wrap
-/* removed as required for task 1.7 */
-    var pokemonList = [ //This is the Pokemon array
-    {
-      name: 'Bulbasaur',
-      height: 7,
-      types: ['grass',' poison ']
-    },
-    {
-      name: 'Pikachu',
-      height: 4,
-      types: ['electric ']
-    },
-    {
-      name: 'Weedle',
-      height: 3,
-      types: ['bug',' poison ']
-    }
-  ];  //End of Pokemon array
 
-/* call pokemon API with fetch (Task 1.7)
-  fetch('https://pokeapi.co/api/v2/pokemon/').then(function (response) {
-    return response.json(); // This returns a promise!
+/* call pokemon API with fetch (Task 1.7) */
+  fetch('https://pokeapi.co/api/v2/pokemon/').then(function (response) { //request for list of Pokemons against API, 1st .then expecting the list within the response parameters
+    return response.json(); // This returns a promise.
   }).then(function (pokemonList) {
     console.log(pokemonList); // The actual JSON response
   }).catch(function () { // Error-handling
   });  //fetch end
-*/
+
   function getAll() {   //get all items from the Pokemon array using the getAll method
     return pokemonList;
   }
@@ -37,7 +19,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
   function showDetails(pokemon) {  //create function showDetails
     console.log(pokemon);
     //console.log(pokemonList.name); MY WRONG VERSION 1
-    //console.log(arguments[0]);     MY WRONG VERSION 1
+    //console.log(arguments[0]);     MY WRONG VERSION 2
   }
 
   pokemonList.forEach(function (pokemonList) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
