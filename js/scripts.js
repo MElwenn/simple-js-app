@@ -4,12 +4,12 @@ var pokemonRepository = (function () { //This is the IIFE wrap
 /* call pokemon API with fetch (Task 1.7) */
   fetch('https://pokeapi.co/api/v2/pokemon/').then(function (response) { //request for list of Pokemons against API, 1st .then expecting the list within the response parameters
     return response.json(); // This returns a promise.
-  }).then(function (pokemonList) {
+  }).then(function (pokemonList) { // if promise within response.json() resolved, all data is available in pokemonList-parameters
     console.log(pokemonList); // The actual JSON response
   }).catch(function () { // Error-handling
   });  //fetch end
-
-  function getAll() {   //get all items from the Pokemon array using the getAll method
+//added var pokemonList= because of ERROR "not defined"...
+  var pokemonList = function getAll() {   //get all items from the Pokemon array using the getAll method
     return pokemonList;
   }
   function add(pokemonList) {  //add pokemonList using the push method
