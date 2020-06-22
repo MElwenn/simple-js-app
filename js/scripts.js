@@ -34,7 +34,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
     pokemonList.push(pokemonList);
   }
 
-  function showDetails(pokemon) {  //create function showDetails
+  function showDetails(item) {  //create function showDetails
     console.log(pokemon);
     //console.log(pokemonList.name); MY WRONG VERSION 1
     //console.log(arguments[0]);     MY WRONG VERSION 1
@@ -84,6 +84,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
 })();
 /* Wrapping IIFE end */
 
-pokemonRepository.getAll().forEach(function (pokemon) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
-  pokemonRepository.addListItem(pokemon);
+pokemonRepository.getAll().forEach(function (item) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
+  //pokemonRepository.addListItem(pokemon); // MY WRONG VERSION
+  pokemonRepository.addListItem(item); // Shan's code review 2020-06-22
 });
