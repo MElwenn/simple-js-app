@@ -44,8 +44,11 @@ var pokemonRepository = (function () { //This is the IIFE wrap
 
 /* Task 1.6 starts here, including function addListItem and code polishing using IIFE */
   //function addListItem('pokemon'){  //add a function addListItem with parameter 'pokemon'
-
-  function addListItem(item) { //add a function addListItem with parameter 'pokemon'
+/* Direction sais: "//add a function addListItem with parameter 'pokemon'"*/
+//var addListItem = function (item) { // scripts.js:82 Uncaught ReferenceError: addListItem is not defined
+//var myNewList = addListItem ();     // scripts.js:49 Uncaught ReferenceError: addListItem is not defined
+//addListItem.add = function(item) {  // scripts.js:49 Uncaught ReferenceError: addListItem is not defined
+  function addListItem(item) {        // scripts.js:83 Uncaught ReferenceError: addListItem is not defined at scripts.js:83 at scripts.js:85
     var hitList = document.querySelectorAll('ul')[0];        //create a 'ul' element and assign  it to ul in HTML
     //var pokemon = function(addListItem) {  MY WRONG VERSION
     //var hitList = document.querySelectorAll('ul');       //create a 'ul' element and assign  it to ul in HTML
