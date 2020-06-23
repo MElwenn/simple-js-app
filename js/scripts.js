@@ -31,23 +31,24 @@ function getPokemons(hitList){
       dataType: 'json',
       method: 'GET'
     });
+
   });
 
   $.when.apply(null,listItem)
     .then(function(){
       var pokemon = Array.prototype.slice.call(arguments);
 
-      //buildTeam(pokemon);
+      displayPokemonList(hitList);
     });
 }
 
 function displayPokemonList(hitList) {
   hitList.forEach(function(what){
     var $container = $('<ul>').addClass('hitList');
-    var $image = $('https://pokeapi.co/api/v2/pokemon/?limit=150' + type.id +'png');
+    var $image = $('<img>').attr('src','https://pokeapi.co/api/v2/pokemon/?limit=150' + type.id +'png');
     var $title = $('<h1>').text(type.name);
     $container.append($image,$title);
-    $('.hitList-container').append($container);
+    $('.hitList-container').append($container); //is this hitList- or listItem-container?
   })
 }
 
