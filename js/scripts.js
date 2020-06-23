@@ -56,8 +56,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
     return { //return all items from the pokemonList to make it available outside the IIFE
         add: add,
         getAll: getAll,
-    //  addListItem: addListItem
-        addpokemonList: addpokemonList
+        addListItem: addListItem
     };
 })();
 /* Wrapping IIFE end */
