@@ -61,7 +61,3 @@ var pokemonRepository = (function() { //This is the IIFE wrap
     }); // forEach Loop end
 })();
 /* Wrapping IIFE end */
-
-// pokemonRepository.getAll().forEach(function(item) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
-//    pokemonRepository.addListItem(item);
-//});
