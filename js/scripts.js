@@ -1,7 +1,45 @@
-/* wrapping all global variables in 'Immediately Invoked Function Expression (or IIFE)' to avoid external code conflicts */
-var pokemonRepository = (function () { //This is the IIFE wrap
+$('ul').on('submit', function(e) {
+  e.preventDefault();
 
-  var pokemonList = []; // removed pokemon objects and replaced array with an empty array
+  var results = $('input[type = text]').val(replace(' ',''));
+  results = results.split(',');
+  console.log(results);
+  var pokemonList = results.map(function(result){
+    return $.ajax({
+      url: 'https://pokeapi.co/api/v2/pokemon/?limit=150' + type,
+      dataType: 'json',
+      method: 'GET'
+    });
+  });
+
+  $.when.apply(null, pokemonList)
+    .then(function(){ //passes the data
+      var listItem = Array.prototype.slice.call(arguments);
+      getPokemons(listItem);
+    });
+});
+
+
+function getPokemons(listItem){
+  listItem = listItem.map(function(results){
+    return results[0].name; //url is missing here to provide the pic
+  });
+}
+
+function displayPokemonList(listItem) {
+  listItem.forEach(function(what){
+    var $container = $('<ul>').addClass('listItem');
+    var $image = $('https://pokeapi.co/api/v2/pokemon/?limit=150' + type.id +'png');
+    var $title = $('<h1>').text(type.name);
+    $container.append($image,$title);
+    $('.listItem-container').append($container);
+  })
+}
+
+/*
+/* wrapping all global variables in 'Immediately Invoked Function Expression (or IIFE)' to avoid external code conflicts */
+//var pokemonRepository = (function () { //This is the IIFE wrap
+/*  var pokemonList = []; // removed pokemon objects and replaced array with an empty array
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //define apiURL
 
   //loadList
@@ -37,3 +75,4 @@ var pokemonRepository = (function () { //This is the IIFE wrap
   pokemonList.forEach(function (pokemonList) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
 
   }); // forEach Loop end
+*/
