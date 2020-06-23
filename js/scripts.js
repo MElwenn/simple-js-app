@@ -51,13 +51,14 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 
         }; //add listItem end
 
-    }); // forEach Loop end
+    // hier hin zurück (forEach Loop end)
 
     return { //return all items from the pokemonList to make it available outside the IIFE
         add: add,
         getAll: getAll,
         addListItem: addListItem
     };
+    }); // forEach Loop end
 })();
 /* Wrapping IIFE end */
 
