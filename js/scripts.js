@@ -1,4 +1,4 @@
-/* wrapping all global variables in IIFE to avoid external code conflicts */
+/* wrapping all global vari ables in IIFE to avoid external code conflicts */
 var pokemonRepository = (function() { //This is the IIFE wrap
 
     var pokemonList = [ //This is the Pokemon array
