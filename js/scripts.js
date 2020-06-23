@@ -17,14 +17,6 @@ var pokemonRepository = (function () { //This is the IIFE wrap
     types: ['bug',' poison ']
   }
   ]; //End of Pokemon array
-/* call pokemon API with fetch (Task 1.7)
-fetch('https://pokeapi.co/api/v2/pokemon/').then(function (response) {
-return response.json(); // This returns a promise!
-}).then(function (pokemonList) {
-console.log(pokemonList); // The actual JSON response
-}).catch(function () { // Error-handling
-}); //fetch end
-*/
   function getAll() { //get all items from the Pokemon array using the getAll method
     return pokemonList;
   }
