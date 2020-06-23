@@ -1,10 +1,10 @@
 $('ul').on('submit', function(e) {
   e.preventDefault();
 
-  var results = $('input[type = text]').val(replace(' ',''));
-  results = results.split(',');
-  console.log(results);
-  var pokemonList = results.map(function(result){
+  var types = $('input[type = text]').val(replace(' ',''));
+  type = types.split(',');
+  console.log(types);
+  var pokemonList = types.map(function(type){
     return $.ajax({
       url: 'https://pokeapi.co/api/v2/pokemon/?limit=150' + type,
       dataType: 'json',
@@ -14,25 +14,40 @@ $('ul').on('submit', function(e) {
 
   $.when.apply(null, pokemonList)
     .then(function(){ //passes the data
-      var listItem = Array.prototype.slice.call(arguments);
-      getPokemons(listItem);
+      var hitList = Array.prototype.slice.call(arguments);
+      getPokemons(hitList);
     });
 });
 
-
-function getPokemons(listItem){
-  listItem = listItem.map(function(results){
-    return results[0].name; //url is missing here to provide the pic
+function getPokemons(hitList){
+  hitList = hitList.map(function(types){
+    return types[0].name; //url is missing here to provide the pic
   });
+  //hitList = flatten(hitList);
+
+  var listItem = hitList.map(function(type) {
+    return $.ajax({
+      url: type.url,
+      dataType: 'json',
+      method: 'GET'
+    });
+  });
+
+  $.when.apply(null,listItem)
+    .then(function(){
+      var pokemon = Array.prototype.slice.call(arguments);
+
+      //buildTeam(pokemon);
+    });
 }
 
-function displayPokemonList(listItem) {
-  listItem.forEach(function(what){
-    var $container = $('<ul>').addClass('listItem');
+function displayPokemonList(hitList) {
+  hitList.forEach(function(what){
+    var $container = $('<ul>').addClass('hitList');
     var $image = $('https://pokeapi.co/api/v2/pokemon/?limit=150' + type.id +'png');
     var $title = $('<h1>').text(type.name);
     $container.append($image,$title);
-    $('.listItem-container').append($container);
+    $('.hitList-container').append($container);
   })
 }
 
