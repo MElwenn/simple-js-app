@@ -1,4 +1,5 @@
 /* wrapping all global variables in 'Immediately Invoked Function Expression (or IIFE)' to avoid external code conflicts */
+
 var pokemonRepository = (function () { //This is the IIFE wrap
   var pokemonList = []; // removed pokemon objects and replaced array with an empty array
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //define apiURL
@@ -30,10 +31,16 @@ var pokemonRepository = (function () { //This is the IIFE wrap
   function loadDetails(item) { // function to load the details of Pokemons ("item" rather than "pokemon")
     var url = item.detailsUrl; // define url
     return fetch(url).then(function (response) {  //callback function to pass the Pokemon-details to the response [Object Response] IF promise resolved
+//GET + URL + Parameters to passed inside here?
+    //fetch('https://pokeapi.co/api/v2/pokemon/', {
+    //  method: 'GET'
+    //})
       return response.json();    // function returns a promise-object and parses response into JSON data
     }).then(function (details) { // if promise resolved, all data passed in resolved function is availabe here
 /* N E W    T R Y  */
-        // Giid guess: something additional needs to happen inside here
+        // Good guess:
+        //a) do we need a onClick eventListener that grabs at least ID or name to get required answer?
+        //b) do we need to post parameters to get the detail-data we want? (ID or name of a certain pokemon?)
 /* N E W    T R Y  */
       item.imageUrl = details.sprites.front_default;  // GET the Pokémon details using the URL from the Pokémon object in the parameter
       item.height = details.height;
@@ -53,6 +60,9 @@ var pokemonRepository = (function () { //This is the IIFE wrap
 
 pokemonRepository.loadList().then(function() {
   // Now the data is loaded!
+  //if (typeof(pokemonRepository) == 'undefined'){
+  //  console.log('undefined');
+});
   pokemonRepository.getAll().forEach(function(item){ // "item" rather than "pokemon"
     addListItem(item);  //function should expect a parameter with a Pokémon object // "item" rather than "pokemon"
   });
@@ -67,7 +77,8 @@ pokemonRepository.loadList().then(function() {
   }
 
   function showDetails(item) {  //show "pokemon" or show "item"? Answer "item"
-    loadDetails(item).then(function () {
+    //loadDetails(item).then(function () {
+    pokemonRepository.loadDetails(item).then(function () {
       console.log(item);                  // ToDo: add the details URL here somehow
     });
   }
@@ -83,17 +94,18 @@ pokemonRepository.loadList().then(function() {
     button.classList.add('button');  //Add a class to the button using the classList.add method
     listItem.appendChild(button);  //append the button to the list item as its child
     hitList.appendChild(listItem); //append the list item to the unordered list as its child
-  }); // addListItem end
+  }; // addListItem end
 
-  return{ //return all items from the pokemonList to make it available outside the IIFE
+return { //ERROR: Uncaught SyntaxError: Illegal return statement //return all items from the pokemonList to make it available outside the IIFE
     add: add,
     getAll: getAll,
     addListItem: addListItem,
-    loadDetails: loadDetails  //add loadDetails
+    loadDetails: loadDetails,  //add loadDetails
+    //showDetails: showDetails   //add showDetails (enable this, if console.log is obsolete)
   };
 })();// Wrapping IIFE end
 
 // outside world
 pokemonRepository.getAll().forEach(function (item) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
- pokemonRepository.addListItem(item); // Shan's code review 2020-06-22
+  pokemonRepository.addListItem(item); // Shan's code review 2020-06-22
 });
