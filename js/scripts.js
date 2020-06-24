@@ -1,94 +1,99 @@
-$('ul').on('submit', function(e) {
-  e.preventDefault();
-
-  var types = $('input[type = text]').val(replace(' ',''));
-  type = types.split(',');
-  console.log(types);
-  var pokemonList = types.map(function(type){
-    return $.ajax({
-      url: 'https://pokeapi.co/api/v2/pokemon/?limit=150' + type,
-      dataType: 'json',
-      method: 'GET'
-    });
-  });
-
-  $.when.apply(null, pokemonList)
-    .then(function(){ //passes the data
-      var hitList = Array.prototype.slice.call(arguments);
-      getPokemons(hitList);
-    });
-});
-
-function getPokemons(hitList){
-  hitList = hitList.map(function(types){
-    return types[0].name; //url is missing here to provide the pic
-  });
-  //hitList = flatten(hitList);
-
-  var listItem = hitList.map(function(type) {
-    return $.ajax({
-      url: type.url,
-      dataType: 'json',
-      method: 'GET'
-    });
-
-  });
-
-  $.when.apply(null,listItem)
-    .then(function(){
-      var pokemon = Array.prototype.slice.call(arguments);
-
-      displayPokemonList(hitList);
-    });
-}
-
-function displayPokemonList(hitList) {
-  hitList.forEach(function(what){
-    var $container = $('<ul>').addClass('hitList');
-    var $image = $('<img>').attr('src','https://pokeapi.co/api/v2/pokemon/?limit=150' + type.id +'png');
-    var $title = $('<h1>').text(type.name);
-    $container.append($image,$title);
-    $('.hitList-container').append($container); //is this hitList- or listItem-container?
-  })
-}
-
-/*
 /* wrapping all global variables in 'Immediately Invoked Function Expression (or IIFE)' to avoid external code conflicts */
-//var pokemonRepository = (function () { //This is the IIFE wrap
-/*  var pokemonList = []; // removed pokemon objects and replaced array with an empty array
+var pokemonRepository = (function () { //This is the IIFE wrap
+  var pokemonList = []; // removed pokemon objects and replaced array with an empty array
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //define apiURL
 
-  //loadList
+  /* call pokemon API with fetch (Task 1.7) */
+    fetch('https://pokeapi.co/api/v2/pokemon/?limit=150').then(function (response) { //request for list of Pokemons against API, 1st .then expecting the list within the response parameters
+      return response.json(); // function returns a promise-object and parses response into JSON data
+    }).then(function (pokemonList) { // if promise within response.json() resolved, all data is available in pokemonList-parameters
+      console.log(pokemonList); // The actual JSON response
+    }).catch(function () { // Error-handling
+    });  //fetch end
 
-  //loadDetails
+  function loadList() {  // function to load the list of Pokemons
+    return fetch(apiUrl).then(function (response) { //callback function to pass the list of Pokemons to the response [Object Response] IF promise resolved
+      return response.json(); // function returns a promise-object and parses response into JSON data
+    }).then(function (json) { // if promise resolved, all data passed in resolved function is availabe here
+      json.results.forEach(function (item) { //forEach Loop to add pokemon objects instead of using the array
+        var item = {       // Structure of the object "item" rather than " "Pokemon"
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(item);         //adds the object to the loadList ("item" rather than " "Pokemon")
+      });                     // forEach Loop end
+    }).catch(function (e) {   //ERROR handling
+      console.error(e);
+    });
+  }  // function loadList end
 
-  //return something
+  function loadDetails(item) { // function to load the details of Pokemons ("item" rather than "pokemon")
+    var url = item.detailsUrl; // define url
+    return fetch(url).then(function (response) {  //callback function to pass the Pokemon-details to the response [Object Response] IF promise resolved
+      return response.json();    // function returns a promise-object and parses response into JSON data
+    }).then(function (details) { // if promise resolved, all data passed in resolved function is availabe here
+/* N E W    T R Y  */
+        // Giid guess: something additional needs to happen inside here
+/* N E W    T R Y  */
+      item.imageUrl = details.sprites.front_default;  // GET the Pokémon details using the URL from the Pokémon object in the parameter
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  } // function loadDetails end
 
+//  return {
+//  add: add,
+//  getAll: getAll,
+//  loadList: loadList,
+//  loadDetails: loadDetails  //add loadDetails
+//};
+//})(); // Wrapping IIFE end
 
-})(); // Wrapping IIFE end
-
-
+pokemonRepository.loadList().then(function() {
   // Now the data is loaded!
-
-  //  addListItem(pokemon);
-
-  // GET, ADD and show Details
+  pokemonRepository.getAll().forEach(function(item){ // "item" rather than "pokemon"
+    addListItem(item);  //function should expect a parameter with a Pokémon object // "item" rather than "pokemon"
+  });
+}); // pokemonRepository.loadList() END
 
   function getAll() {   //get all items from the Pokemon array using the getAll method
     return pokemonList;
   }
+
   function add(pokemonList) {  //add pokemonList using the push method
     pokemonList.push(pokemonList);
   }
 
-  function showDetails(pokemon) {  //create function showDetails
-  }
-  function showDetails(item) {  //show "pokemon" or show "item"?
+  function showDetails(item) {  //show "pokemon" or show "item"? Answer "item"
     loadDetails(item).then(function () {
-      console.log(item);
+      console.log(item);                  // ToDo: add the details URL here somehow
     });
   }
-  pokemonList.forEach(function (pokemonList) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
 
-  }); // forEach Loop end
-*/
+  function addListItem(item) { //add a function addListItem with parameter 'pokemon'
+    var hitList = document.querySelectorAll('ul')[0];     //create a 'ul' element and assign  it to ul in HTML
+    var listItem = document.createElement('li');          //create a list element
+    var button = document.createElement('button');        //create a button element (syntax correct but moved here from line 57)
+    button.innerHTML = item.name;                         // set button innerText to be the Pokémon's name
+    button.addEventListener('click', function (event) {   //event listener to each newly created button
+      showDetails(item.name);   //create function showDetails
+    });
+    button.classList.add('button');  //Add a class to the button using the classList.add method
+    listItem.appendChild(button);  //append the button to the list item as its child
+    hitList.appendChild(listItem); //append the list item to the unordered list as its child
+  }); // addListItem end
+
+  return{ //return all items from the pokemonList to make it available outside the IIFE
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem,
+    loadDetails: loadDetails  //add loadDetails
+  };
+})();// Wrapping IIFE end
+
+// outside world
+pokemonRepository.getAll().forEach(function (item) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
+ pokemonRepository.addListItem(item); // Shan's code review 2020-06-22
+});
