@@ -65,7 +65,7 @@ pokemonRepository.loadList().then(function() {
 });
   pokemonRepository.getAll().forEach(function(item){ // "item" rather than "pokemon"
     addListItem(item);  //function should expect a parameter with a Pokémon object // "item" rather than "pokemon"
-  });
+  //}); these brackets were too much
 }); // pokemonRepository.loadList() END
 
   function getAll() {   //get all items from the Pokemon array using the getAll method
@@ -96,11 +96,11 @@ pokemonRepository.loadList().then(function() {
     hitList.appendChild(listItem); //append the list item to the unordered list as its child
   }; // addListItem end
 
-return { //ERROR: Uncaught SyntaxError: Illegal return statement //return all items from the pokemonList to make it available outside the IIFE
+  return { //ERROR: Uncaught SyntaxError: Illegal return statement //return all items from the pokemonList to make it available outside the IIFE
     add: add,
     getAll: getAll,
     addListItem: addListItem,
-    loadDetails: loadDetails,  //add loadDetails
+    loadDetails: loadDetails  //add loadDetails
     //showDetails: showDetails   //add showDetails (enable this, if console.log is obsolete)
   };
 })();// Wrapping IIFE end
