@@ -58,22 +58,17 @@ var pokemonRepository = (function () { //This is the IIFE wrap
 //};
 //})(); // Wrapping IIFE end
 
-pokemonRepository.loadList().then(function() {
-  // Now the data is loaded!
-  //if (typeof(pokemonRepository) == 'undefined'){
-  //  console.log('undefined');
-});
-  pokemonRepository.getAll().forEach(function(item){ // "item" rather than "pokemon"
-    addListItem(item);  //function should expect a parameter with a Pokémon object // "item" rather than "pokemon"
+  //pokemonRepository.getAll().forEach(function(item){ // "item" rather than "pokemon"
+  //  addListItem(item);  //function should expect a parameter with a Pokémon object // "item" rather than "pokemon"
   //}); these brackets were too much
-}); // pokemonRepository.loadList() END
+//}); // pokemonRepository.loadList() END
 
   function getAll() {   //get all items from the Pokemon array using the getAll method
     return pokemonList;
   }
 
-  function add(pokemonList) {  //add pokemonList using the push method
-    pokemonList.push(pokemonList);
+  function add(pokemon) {  //add pokemonList using the push method
+    pokemonList.push(pokemon);
   }
 
   function showDetails(item) {  //show "pokemon" or show "item"? Answer "item"
@@ -100,10 +95,17 @@ pokemonRepository.loadList().then(function() {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
-    loadDetails: loadDetails  //add loadDetails
+    loadDetails: loadDetails,  //add loadDetails
+    loadList: loadList
     //showDetails: showDetails   //add showDetails (enable this, if console.log is obsolete)
   };
 })();// Wrapping IIFE end
+
+pokemonRepository.loadList().then(function() {
+  // Now the data is loaded!
+  //if (typeof(pokemonRepository) == 'undefined'){
+  //  console.log('undefined');
+});
 
 // outside world
 pokemonRepository.getAll().forEach(function (item) { //forEach loop to ensure only pokemons with a height > 5 are marked with ' Wow, that’s big!'
