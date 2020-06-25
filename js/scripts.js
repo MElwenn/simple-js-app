@@ -39,9 +39,9 @@ var pokemonRepository = (function () { //This is the IIFE wrap
     }).then(function (details) { // if promise resolved, all data passed in resolved function is availabe here
 /* N E W    T R Y  */
         // Good guess:
-        //a) do we need a onClick eventListener that grabs at least ID or name to get required answer?
-        //b) do we need to post parameters to get the detail-data we want? (ID or name of a certain pokemon?)
-        //c) currently the url(s) of each spcific pokemon isn't included in any of the code blocks => where should the details come from? 
+        //a) do we need an onClick eventListener that grabs at least ID or name to get required answer from the details-url?
+        //b) do we need to post parameters (such as ID or name of a certain pokemon?) to get the detail-data we want? Otherwise the API wouldn't know which detail shall be returned, right?
+        //c) currently the url(s) of each specific pokemon isn't included in any of the code blocks. Thus where should the details come from?
 /* N E W    T R Y  */
       item.imageUrl = details.sprites.front_default;  // GET the Pokémon details using the URL from the Pokémon object in the parameter
       item.height = details.height;
