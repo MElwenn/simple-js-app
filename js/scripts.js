@@ -41,6 +41,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
         // Good guess:
         //a) do we need a onClick eventListener that grabs at least ID or name to get required answer?
         //b) do we need to post parameters to get the detail-data we want? (ID or name of a certain pokemon?)
+        //c) currently the url(s) of each spcific pokemon isn't included in any of the code blocks => where should the details come from? 
 /* N E W    T R Y  */
       item.imageUrl = details.sprites.front_default;  // GET the Pokémon details using the URL from the Pokémon object in the parameter
       item.height = details.height;
