@@ -17,9 +17,9 @@ var pokemonRepository = (function () { //This is the IIFE wrap
       return response.json(); // function returns a promise-object and parses response into JSON data
     }).then(function (json) { // if promise resolved, all data passed in resolved function is availabe here
       json.results.forEach(function (item) { //forEach Loop to add pokemon objects instead of using the array
-        var item = {       // Structure of the object "item" rather than " "Pokemon"
-          name: item.name,
-          detailsUrl: item.url
+        var item = {           // Structure of the object "item" rather than " "Pokemon"
+          name: item.name,     // Pokemon name returned by the API
+          detailsUrl: item.url // url that provides details through the API
         };
         add(item);         //adds the object to the loadList ("item" rather than " "Pokemon")
       });                     // forEach Loop end
@@ -79,6 +79,9 @@ var pokemonRepository = (function () { //This is the IIFE wrap
       //});
     });
   }
+
+/* make sure the code responsible for add the buttons from the array is being called correctly. (Point #4 and 5 in the 'Directions' section of the task) */
+
   function addListItem(item) { //add a function addListItem with parameter 'pokemon'
     var hitList = document.querySelectorAll('ul')[0];     //create a 'ul' element and assign  it to ul in HTML
     var listItem = document.createElement('li');          //create a list element
