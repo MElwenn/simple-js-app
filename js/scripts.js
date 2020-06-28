@@ -85,7 +85,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
   function addListItem(item) { //add a function addListItem with parameter 'pokemon'
     var hitList = document.querySelectorAll('ul')[0];     // create a 'ul' element and assign  it to ul in HTML
     var listItem = document.createElement('li');          // create a list element
-    listItem.classList.add('container');
+    listItem.classList.add('container');                  // Add a class to the listItem using the classList.add method
     //  return item.name, item.url
     //})
     var button = document.createElement('button');        // create a button element (syntax correct but moved here from line57)
