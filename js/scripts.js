@@ -107,8 +107,9 @@ var pokemonRepository = (function () { //This is the IIFE wrap
     add: add,
     getAll: getAll,
     addListItem: addListItem,
-    loadDetails: loadDetails,  //add loadDetails
-    loadList: loadList
+    loadList: loadList,
+    loadDetails: loadDetails  //add loadDetails
+
     //showDetails: showDetails   //add showDetails (enable this, if console.log is obsolete)
   };
 })();// Wrapping IIFE end
