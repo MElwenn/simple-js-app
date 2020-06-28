@@ -17,11 +17,11 @@ var pokemonRepository = (function () { //This is the IIFE wrap
       return response.json(); // function returns a promise-object and parses response into JSON data
     }).then(function (json) { // if promise resolved, all data passed in resolved function is availabe here
       json.results.forEach(function (item) { //forEach Loop to add pokemon objects instead of using the array
-        var item = {           // Structure of the object "item" rather than " "Pokemon"
+        var item = {           // ONE Structure of the object "item" rather than " "Pokemon"
           name: item.name,     // Pokemon name returned by the API
           detailsUrl: item.url // url that provides details through the API
         };
-        add(item);         //adds the object to the loadList ("item" rather than " "Pokemon")
+        add(item);         // TWO adds the object to the loadList ("item" rather than " "Pokemon")
       });                     // forEach Loop end
     }).catch(function (e) {   //ERROR handling
       console.error(e);
@@ -69,8 +69,9 @@ var pokemonRepository = (function () { //This is the IIFE wrap
   }
 
   function add(pokemon) {  //add pokemonList using the push method
-    pokemonList.push(pokemon);
-  }
+    pokemonList.push(pokemon); // THREE
+    addListItem(pokemon);
+  } //FOUR
 
   function showDetails(item) {  //show "pokemon" or show "item"? Answer "item"
     loadDetails(item).then(function () {
@@ -81,18 +82,25 @@ var pokemonRepository = (function () { //This is the IIFE wrap
   }
 
 /* make sure the code responsible for add the buttons from the array is being called correctly. (Point #4 and 5 in the 'Directions' section of the task) */
-
   function addListItem(item) { //add a function addListItem with parameter 'pokemon'
-    var hitList = document.querySelectorAll('ul')[0];     //create a 'ul' element and assign  it to ul in HTML
-    var listItem = document.createElement('li');          //create a list element
-    var button = document.createElement('button');        //create a button element (syntax correct but moved here from line 57)
+    var hitList = document.querySelectorAll('ul')[0];     // create a 'ul' element and assign  it to ul in HTML
+    var listItem = document.createElement('li');          // create a list element
+    //var listItem = document.createElement('li' => {
+    //  return item.name, item.url
+    //})
+    var button = document.createElement('button');        // create a button element (syntax correct but moved here from line57)
     button.innerHTML = item.name;                         // set button innerText to be the Pokémon's name
-    button.addEventListener('click', function (event) {   //event listener to each newly created button
+    button.addEventListener('click', function (event) {   // event listener to each newly created button
       showDetails(item.name);   //create function showDetails
     });
-    button.classList.add('button');  //Add a class to the button using the classList.add method
-    listItem.appendChild(button);  //append the button to the list item as its child
-    hitList.appendChild(listItem); //append the list item to the unordered list as its child
+    button.classList.add('button');    // Add a class to the button using the classList.add method
+    listItem.appendChild(button); //{   // (with or without ''?) append the button to the list item as its child
+    //  return button.listItem('li'); DOES not work
+    //}
+    hitList.appendChild(listItem);   // (with or without ''?) append the list item to the unordered list as its child
+    //var result = document.getElementById('button');   // DOES NOT WORK: https://stackoverflow.com/questions/57237230/how-to-display-objects-from-array-into-html-table
+    //document.body.insertBefore('listItem', 'button'); // DOES NOT WORK: https://stackoverflow.com/questions/57237230/how-to-display-objects-from-array-into-html-table
+    //display.listItem(pokemon); nice try but doesn't work
   }; // addListItem end
 
   return { //ERROR: Uncaught SyntaxError: Illegal return statement //return all items from the pokemonList to make it available outside the IIFE
@@ -107,8 +115,9 @@ var pokemonRepository = (function () { //This is the IIFE wrap
 
 pokemonRepository.loadList().then(function() {
   // Now the data is loaded!
-  //if (typeof(pokemonRepository) == 'undefined'){
-  //  console.log('undefined');
+  // how do I GET the data from here dispalayed?
+  console.log(loadList);
+  // console.log('undefined');
 });
 
 // outside world
