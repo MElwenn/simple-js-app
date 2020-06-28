@@ -116,7 +116,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
 pokemonRepository.loadList().then(function() {
   // Now the data is loaded!
   // how do I GET the data from here dispalayed?
-  console.log(loadList);
+  //console.log(loadList);
   // console.log('undefined');
 });
 
