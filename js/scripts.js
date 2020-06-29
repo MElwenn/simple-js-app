@@ -73,7 +73,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
     addListItem(pokemon);
   } //FOUR
 
-  function showDetails(item) {  //show "pokemon" or show "item"? Answer "item"
+  function showDetails(item) {  //show "pokemon" or show "item"? Answer: show "item"
     loadDetails(item).then(function () {
       console.log(item);                  // ToDo: add the details URL here somehow
       //pokemonRepository.loadDetails(item).then(function () {
@@ -108,7 +108,8 @@ var pokemonRepository = (function () { //This is the IIFE wrap
     getAll: getAll,
     addListItem: addListItem,
     loadList: loadList,
-    loadDetails: loadDetails  //add loadDetails
+    loadDetails: loadDetails,  //add loadDetails
+    showDetails: showDetails   //add showDetails
 
     //showDetails: showDetails   //add showDetails (enable this, if console.log is obsolete)
   };
