@@ -30,7 +30,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
 
   function loadDetails(item) { // function to load the details of Pokemons ("item" rather than "pokemon")
     var url = item.detailsUrl; // define url
-    return fetch(url).then(function (response) {  //callback function to pass the Pokemon-details to the response [Object Response] IF promise resolved
+    return fetch('https://pokeapi.co/api/v2/pokemon/').then(function (response) {  //callback function to pass the Pokemon-details to the response [Object Response] IF promise resolved
 //GET + URL + Parameters to passed inside here?
     //fetch('https://pokeapi.co/api/v2/pokemon/', {
     //  method: 'GET'
