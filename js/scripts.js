@@ -91,7 +91,7 @@ var pokemonRepository = (function () { //This is the IIFE wrap
     var button = document.createElement('button');        // create a button element (syntax correct but moved here from line57)
     button.innerHTML = item.name;                         // set button innerText to be the Pokémon's name
     button.addEventListener('click', function (event) {   // event listener to each newly created button
-      showDetails(item.name);   //create function showDetails
+      showDetails(item);   //create function showDetails
     });
     button.classList.add('button');    // Add a class to the button using the classList.add method
     listItem.appendChild(button); //{   // (with or without ''?) append the button to the list item as its child
