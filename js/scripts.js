@@ -1,9 +1,9 @@
 /* wrapping all global variables in 'Immediately Invoked Function Expression (or IIFE)' to avoid external code conflicts */
-var pokemonRepository = (function() { //This is the IIFE wrap
+/*var pokemonRepository = (function() { //This is the IIFE wrap
     var pokemonList = []; // removed pokemon objects and replaced array with an empty array
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //define apiURL
 
-    /* call pokemon API with fetch (Task 1.7) */
+    /* call pokemon API with fetch (Task 1.7)
     fetch('https://pokeapi.co/api/v2/pokemon/?limit=150').then(function(response) { //request for list of Pokemons against API, 1st .then expecting the list within the response parameters
         return response.json(); // function returns a promise-object and parses response into JSON data
     }).then(function(pokemonList) { // if promise within response.json() resolved, all data is available in pokemonList-parameters
@@ -52,7 +52,8 @@ var pokemonRepository = (function() { //This is the IIFE wrap
     function showDetails(item) { // function show details "item" (the pokemon)
         loadDetails(item).then(function() {
             //console.log(item);
-
+    } // function show details "item" (the pokemon) end
+*/
             (function() { // function modalContainer to display pokemon details
                 var $modalContainer = document.querySelector('#modal-container');
 
@@ -105,9 +106,10 @@ var pokemonRepository = (function() { //This is the IIFE wrap
                 }) // addEventListener end
 
             })(); // function modalContainer to display pokemon details end
-        }) // loadDetails(item).then(function() end
+
+//       }) // loadDetails(item).then(function() end
         /* make sure the code responsible for add the buttons from the array is being called correctly. (Point #4 and 5 in the 'Directions' section of the task) */
-        function addListItem(item) { //add a function addListItem with parameter 'pokemon'
+/*        function addListItem(item) { //add a function addListItem with parameter 'pokemon'
             var hitList = document.querySelectorAll('ul')[0]; // create a 'ul' element and assign  it to ul in HTML
             var listItem = document.createElement('li'); // create a list element
             listItem.classList.add('container'); // Add a class to the listItem using the classList.add method
@@ -120,7 +122,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
             listItem.appendChild(button); // append the button to the list item as its child
             hitList.appendChild(listItem); // append the list item to the unordered list as its child
         }; // addListItem end
-    } // function show details "item" (the pokemon) end
+    //} // function show details "item" (the pokemon) end
 
     return { //ERROR: Uncaught SyntaxError: Illegal return statement //return all items from the pokemonList to make it available outside the IIFE
         add: add,
@@ -140,3 +142,4 @@ pokemonRepository.loadList().then(function() {
 pokemonRepository.getAll().forEach(function(item) { // forEach loop to make data accessable outside IIFE Wrap
     pokemonRepository.addListItem(item); // make data accessable outside IIFE Wrap
 });
+*/
