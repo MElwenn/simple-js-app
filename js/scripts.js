@@ -17,8 +17,9 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         }).then(function(json) { // if promise resolved, all data passed in resolved function is availabe here
             json.results.forEach(function(item) { //forEach Loop to add pokemon objects instead of using the array
                 var item = { // Structure of the object "item" rather than " "Pokemon"
-                    name: item.name, // Pokemon name returned by the API
+                    name: item.name,     // Pokemon name returned by the API
                     detailsUrl: item.url // url that provides details through the API
+                    height: item.height  // Pokemon height returned by API
                 };
                 add(item); // adds the object to the loadList ("item" rather than " "Pokemon")
             }); // forEach Loop end
@@ -39,6 +40,17 @@ var pokemonRepository = (function() { //This is the IIFE wrap
             console.error(e);
         });
     } // function loadDetails end
+
+    function createModalContainerElements(item) {     // create container elements for pokemon details
+        var elements = {
+            detailBox: document.createElement('div'); // box element for pokemon details
+            pokTitle: document.createElement('div');  // pokemons name in detail viewport
+            pokImgUrl: document.createElement('div'); // image url of pokemon
+            pokheight: document.createElement('div'); // height of pokemon
+        }
+        createModalDetails(elements);                 // wrap all elements together
+        
+    }
 
     function getAll() { // get all items from the Pokemon array using the getAll method
         return pokemonList;
@@ -120,7 +132,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
             var listItem = document.createElement('li'); // create a list element
             listItem.classList.add('container'); // Add a class to the listItem using the classList.add method
 
-            var button = document.createElement('button'); // create a button element (syntax correct but moved here from line57)
+            var button = document.createElement('button'); // create a button element with pokemons name
             button.innerHTML = item.name; // set button innerText to be the Pokémon's name
                 button.addEventListener('click', function(event) { // event listener to each newly created button
                     showDetails(item); //create function showDetails
