@@ -107,7 +107,8 @@ var pokemonRepository = (function() { //This is the IIFE wrap
                 // create structure to display pokemon details
                 function createModalElements (item){
                     var elements = {
-                        detailBox: document.createElement('div'),      // box element for pokemon details
+                        modalContainer: document.createElement('div'), // the overlay containing all modal elements
+                        detailBox: document.createElement('div'),      // box-element for pokemon details
                         pokTitle: document.createElement('div'),       // pokemons name in detail viewport
                         closeButton: document.createElement('button'),  // button to close modal
                         pokImgUrl: document.createElement('div'),      // image url of pokemon
@@ -117,7 +118,25 @@ var pokemonRepository = (function() { //This is the IIFE wrap
                 } // createModalElements end
 
                 // fill structure with detail attributes
+                function createModalAttributes (elements){
+                    elements.pokTitle.innerHTML = (item.name);
+                    elements.closeButton.innerHTML = ('Close');
+                    elements.imageUrl.setAttribute = ("src", item.imageUrl);
+                    elements.pokHeight.innerHTML = (item.height);
 
+                    appendModalAttributes (elements);
+                }
+
+                // add attributes to modal
+                function appendModalAttributes (elements){
+                    elements.modalContainer.appendChild(elements.detailBox);
+                    elements.modalContainer.appendChild(elements.pokTitle);
+                    elements.modalContainer.appendChild(elements.closeButton);
+                    elements.modalContainer.appendChild(elements.imageUrl);
+                    elements.modalContainer.appendChild(elements.pokHeight);
+
+                    elements.modalContainer.classList.toggle('is-visible');
+                }
 
               })(); // function modalContainer to display pokemon details end
             }; // function showModal end
