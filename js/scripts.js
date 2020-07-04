@@ -111,7 +111,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 
     })(); // function modalContainer to display pokemon details end
 
- }) // loadDetails(item).then(function() end
+ } // loadDetails(item).then(function() end
 
 
         /* make sure the code responsible for add the buttons from the array is being called correctly. (Point #4 and 5 in the 'Directions' section of the task) */
