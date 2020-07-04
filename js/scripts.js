@@ -1,7 +1,7 @@
 /* wrapping all global variables in 'Immediately Invoked Function Expression (or IIFE)' to avoid external code conflicts */
-var pokemonRepository = (function () { //This is the IIFE wrap
-  var pokemonList = [];         // removed pokemon objects and replaced array with an empty array
-  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //define apiURL
+var pokemonRepository = (function() { //This is the IIFE wrap
+    var pokemonList = []; // removed pokemon objects and replaced array with an empty array
+    var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'; //define apiURL
 
     /* call pokemon API with fetch (Task 1.7) */
     fetch('https://pokeapi.co/api/v2/pokemon/?limit=150').then(function (response) { //request for list of Pokemons against API, 1st .then expecting the list within the response parameters
