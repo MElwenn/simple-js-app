@@ -38,7 +38,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         }).catch(function(e) { // ERROR handling
             console.error(e);
         });
-    } // function loadDetails end
+    // H I E R ?} // function loadDetails end
 
     function getAll() { // get all items from the Pokemon array using the getAll method
         return pokemonList;
@@ -111,7 +111,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 
     })(); // function modalContainer to display pokemon details end
 
-  // H I E R ? }) // loadDetails(item).then(function() end
+ }) // loadDetails(item).then(function() end
 
 
         /* make sure the code responsible for add the buttons from the array is being called correctly. (Point #4 and 5 in the 'Directions' section of the task) */
