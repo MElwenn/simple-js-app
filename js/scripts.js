@@ -144,9 +144,12 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 
 pokemonRepository.loadList().then(function() {
     // Now the data is loaded!
+    // Option 1.) add the modal here instead ???
 });
-
+    // Option 2.) add the modal here instead ???
 // outside IIFE-Wrap
 pokemonRepository.getAll().forEach(function(item) { // forEach loop to make data accessable outside IIFE Wrap
     pokemonRepository.addListItem(item); // make data accessable outside IIFE Wrap
+    // Option 3.) add the modal here instead ???
 });
+    // Option 4.) add the modal here instead ???
