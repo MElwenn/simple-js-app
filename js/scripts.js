@@ -54,7 +54,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
             //console.log(item); THIS is to be replaced in task 1.8
             showModal(id='show-modal', 'Modal title', 'This is the modal content!');
         })  // function show details "item" (the pokemon) end
-    } // loadDetails(item).then(function() end
+  // H I E R ?  } // loadDetails(item).then(function() end
 
 
     // function modalContainer to display pokemon details
