@@ -144,7 +144,8 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 
 pokemonRepository.loadList().then(function() {
     // Now the data is loaded!
-    // Option 1.) add the modal here instead ???
+    
+    // Option 1.) add eventListener & the modal here instead ???
 });
     // Option 2.) add the modal here instead ???
 // outside IIFE-Wrap
