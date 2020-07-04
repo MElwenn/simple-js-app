@@ -52,6 +52,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
     function showDetails(item) { // function show details "item" (the pokemon)
         loadDetails(item).then(function() {
             //console.log(item); THIS is to be replaced in task 1.8
+            var showModal = document.querySelector('#modal-container');
             showModal(id='show-modal', 'Modal title', 'This is the modal content!');
         })  // function show details "item" (the pokemon) end
     } // loadDetails(item).then(function() end
@@ -144,7 +145,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 
 pokemonRepository.loadList().then(function() {
     // Now the data is loaded!
-    
+
     // Option 1.) add eventListener & the modal here instead ???
 });
     // Option 2.) add the modal here instead ???
