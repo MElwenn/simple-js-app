@@ -107,12 +107,18 @@ var pokemonRepository = (function() { //This is the IIFE wrap
                 // create structure to display pokemon details
                 function createModalElements (item){
                     var elements = {
-                        detailBox: document.createElement('div'),  // box element for pokemon details
-                        pokTitle: document.createElement('div'),   // pokemons name in detail viewport
-                        pokImgUrl: document.createElement('div'),  // image url of pokemon
-                        pokHeight: document.createElement('div')  // height of pokemon
+                        detailBox: document.createElement('div'),      // box element for pokemon details
+                        pokTitle: document.createElement('div'),       // pokemons name in detail viewport
+                        closeButton: document.createElement('button'),  // button to close modal
+                        pokImgUrl: document.createElement('div'),      // image url of pokemon
+                        pokHeight: document.createElement('p')         // height of pokemon
                     }
+                    createModalAttributes (elements);
                 } // createModalElements end
+
+                // fill structure with detail attributes
+
+
               })(); // function modalContainer to display pokemon details end
             }; // function showModal end
         })  // function show details "item" (the pokemon) end
