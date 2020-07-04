@@ -138,7 +138,8 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         addListItem: addListItem,
         loadList: loadList,
         loadDetails: loadDetails, //add loadDetails
-        showDetails: showDetails //add showDetails
+        showDetails: showDetails, //add showDetails
+        showModal: showModal      //add showModals
     }; // return end
 })(); // Wrapping IIFE end
 
