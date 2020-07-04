@@ -52,12 +52,73 @@ var pokemonRepository = (function() { //This is the IIFE wrap
     function showDetails(item) { // function show details "item" (the pokemon)
         loadDetails(item).then(function() {
             //console.log(item); THIS is to be replaced in task 1.8
-            var showModal = document.querySelector('#modal-container');
-            showModal(id='show-modal', 'Modal title', 'This is the modal content!');
+            var showModal = function showModal(pokemon){
+              (function() {
+                var $modalContainer = document.querySelector('#modal-container');
+
+                function showModal(title, text) {
+                  // Clear all existing modal content
+                  $modalContainer.innerHTML = '';
+
+                  var modal = document.createElement('div');
+                  modal.classList.add('modal');
+
+                  // Add the new modal content
+                  var closeButtonElement = document.createElement('button');
+                  closeButtonElement.classList.add('modal-close');
+                  closeButtonElement.innerText = 'Close';
+                  closeButtonElement.addEventListener('click', hideModal);
+
+                  var titleElement = document.createElement('h1');
+                  titleElement.innerText = title;
+
+                  var contentElement = document.createElement('p');
+                  contentElement.innerText = text;
+
+                  modal.appendChild(closeButtonElement);
+                  modal.appendChild(titleElement);
+                  modal.appendChild(contentElement);
+                  $modalContainer.appendChild(modal);
+
+                  $modalContainer.classList.add('is-visible');
+                }
+
+                function hideModal() {
+                  $modalContainer.classList.remove('is-visible');
+                }
+                // ==> T H I S  seems to "call" the hard coded HTML-show-details-button ==> has to be done by the pokempn buttons then
+                document.querySelector('#show-modal').addEventListener('click', () => { // display pokemon details on button click
+                  showModal('Modal title', 'This is the modal content!'); // include the pokemon name, pokemon-height somehow and pokemonImgUrl somehow
+                });
+
+                window.addEventListener('keydown', (e) => {
+                  if (e.key === 'Escape' && $modalContainer.classList.contains('is-visible')) {
+                    hideModal();
+                  }
+                });
+
+                $modalContainer.addEventListener('click', (e) => { // don't close when user clicks OTUSIDE overlay
+                      var target = e.target;
+                  if (target === $modalContainer) { // close only if user clicks directly on the overlay,
+                    hideModal();
+                  }
+                }); // addEventListener end
+
+                // create structure to display pokemon details
+                function createModalElements (item){
+                    var elements = {
+                        detailBox: document.createElement('div'),  // box element for pokemon details
+                        pokTitle: document.createElement('div'),   // pokemons name in detail viewport
+                        pokImgUrl: document.createElement('div'),  // image url of pokemon
+                        pokHeight: document.createElement('div')  // height of pokemon
+                    }
+                } // createModalElements end
+              })(); // function modalContainer to display pokemon details end
+            }; // function showModal end
         })  // function show details "item" (the pokemon) end
     } // loadDetails(item).then(function() end
 
-
+/*
     // function modalContainer to display pokemon details
     (function() {
       var $modalContainer = document.querySelector('#modal-container');
@@ -111,7 +172,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
       }); // addEventListener end
 
     })(); // function modalContainer to display pokemon details end
-
+*/
   // H I E R ? }) // loadDetails(item).then(function() end
 
 
