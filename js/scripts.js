@@ -52,11 +52,11 @@ var pokemonRepository = (function() { //This is the IIFE wrap
     function showDetails(item) { // function show details "item" (the pokemon)
         loadDetails(item).then(function() {
             //console.log(item); THIS is to be replaced in task 1.8
-            var showModal = function showModal(pokemon){
+            //var showModal = function showModal(pokemon){
               (function() {
                 var $modalContainer = document.querySelector('#modal-container');
 
-                function showModal(title, text) {
+                var showModal = function showModal(title, text) {
                   // Clear all existing modal content
                   $modalContainer.innerHTML = '';
 
@@ -69,7 +69,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
                   closeButtonElement.innerText = 'Close';
                   closeButtonElement.addEventListener('click', hideModal);
 
-                  var titleElement = document.createElement('h1');
+                  var titleElement = document.createElement('div');
                   titleElement.innerText = title;
 
                   var contentElement = document.createElement('p');
@@ -103,7 +103,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
                     hideModal();
                   }
                 }); // addEventListener end
-
+/*  //T E S T revealed this seems to be useless code
                 // create structure to display pokemon details
                 function createModalElements (item){
                     var elements = {
@@ -137,9 +137,9 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 
                     elements.modalContainer.classList.toggle('is-visible');
                 }
-
+*/ //T E S T  revealed this seems to be useless code
               })(); // function modalContainer to display pokemon details end
-            }; // function showModal end
+            //}; // function showModal end
         })  // function show details "item" (the pokemon) end
     } // loadDetails(item).then(function() end
 
@@ -207,7 +207,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
             var listItem = document.createElement('li'); // create a list element
             listItem.classList.add('container'); // Add a class to the listItem using the classList.add method
 
-            var button = document.createElement('button'); // create a button element (syntax correct but moved here from line57)
+            var button = document.createElement('button', id='show-modal'); // create a button element (syntax correct but moved here from line57)
             button.innerHTML = item.name; // set button innerText to be the Pokémon's name
                 button.addEventListener('click', function(event) { // event listener to each newly created button
                     showDetails(item); //create function showDetails
