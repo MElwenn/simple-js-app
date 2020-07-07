@@ -48,7 +48,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         pokemonList.push(pokemon);
         addListItem(pokemon);
     } // add pokemonList end
-
+/* ab hier
     function showDetails(item) { // function show details "item" (the pokemon)
         loadDetails(item).then(function() {
             //console.log(item); THIS is to be replaced in task 1.8
@@ -95,6 +95,8 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 //                        showDetails(item); //create function showDetails
                         showModal(item);   //Shan: use show modal iso showDetails
                     });
+*/
+//                showModal('Modal title', 'This is the modal content!');
 /* Shans advice end 2020-07-06*/
                 // ==> T H I S  seems to "call" the hard coded HTML-show-details-button ==> has to be done by the pokempn buttons then
 //                document.querySelector('#show-modal').addEventListener('click', () => { // display pokemon details on button click
@@ -104,13 +106,13 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 //                      alert('not confirmed'); //delete again?
 //                  });                         //delete again?
 //                });
-
+/* ab hier
                 window.addEventListener('keydown', (e) => {
                   if (e.key === 'Escape' && $modalContainer.classList.contains('is-visible')) {
                     hideModal();
                   }
                 });
-
+*/ //bis hier
 //                $modalContainer.addEventListener('click', (e) => { // don't close when user clicks OTUSIDE overlay
 //                      var target = e.target;
 //                  if (target === $modalContainer) { // close only if user clicks directly on the overlay,
@@ -151,13 +153,13 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 
                     elements.modalContainer.classList.toggle('is-visible');
                 }
-*/ //T E S T  revealed this seems to be useless code
+ //T E S T  revealed this seems to be useless code
               })(); // function modalContainer to display pokemon details end
             //}; // function showModal end
         })  // function show details "item" (the pokemon) end
     } // loadDetails(item).then(function() end
-
-/*
+*/
+// ab hier war auskommentiert
     // function modalContainer to display pokemon details
     (function() {
       var $modalContainer = document.querySelector('#modal-container');
@@ -192,10 +194,14 @@ var pokemonRepository = (function() { //This is the IIFE wrap
       function hideModal() {
         $modalContainer.classList.remove('is-visible');
       }
-      // ==> T H I S  seems to "call" the hard coded HTML-show-details-button ==> has to be done by the pokempn buttons then
-      document.querySelector('#show-modal').addEventListener('click', () => { // display pokemon details on button click
-        showModal('Modal title', 'This is the modal content!'); // include the pokemon name, pokemon-height somehow and pokemonImgUrl somehow
-      });
+//*/
+      showModal('Modal title', 'This is the modal content!');
+//      // ==> T H I S  seems to "call" the hard coded HTML-show-details-button ==> has to be done by the pokempn buttons then
+//      document.querySelector('#show-modal').addEventListener('click', () => { // display pokemon details on button click
+//        showModal('Modal title', 'This is the modal content!'); // include the pokemon name, pokemon-height somehow and pokemonImgUrl somehow
+//});
+
+
 
       window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && $modalContainer.classList.contains('is-visible')) {
@@ -203,15 +209,16 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         }
       });
 
-      $modalContainer.addEventListener('click', (e) => { // don't close when user clicks OTUSIDE overlay
-            var target = e.target;
-        if (target === $modalContainer) { // close only if user clicks directly on the overlay,
-          hideModal();
-        }
-      }); // addEventListener end
+//      $modalContainer.addEventListener('click', (e) => { // don't close when user clicks OTUSIDE overlay
+//            var target = e.target;
+//        if (target === $modalContainer) { // close only if user clicks directly on the overlay,
+//          hideModal();
+//        }
+//      }); // addEventListener end
 
     })(); // function modalContainer to display pokemon details end
-*/
+
+// bis hier war auskommentiert
   // H I E R ? }) // loadDetails(item).then(function() end
 
 
@@ -224,7 +231,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 //            var showModal = document.getElementById('show-modal').value;
             var button = document.createElement('button', id = 'show-modal'); // create a button element (syntax correct but moved here from line57)
             button.innerHTML = item.name; // set button innerText to be the Pokémon's name
-            
+
             button.addEventListener('click', function(event) { // event listener to each newly created button
 //                    showDetails(item); //create function showDetails
                 showModal(item); //create function showDetails
@@ -242,7 +249,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         addListItem: addListItem,
         loadList: loadList,
         loadDetails: loadDetails, //add loadDetails
-        showDetails: showDetails //add showDetails
+//        showDetails: showDetails //add showDetails
     }; // return end
 })(); // Wrapping IIFE end
 
