@@ -67,8 +67,10 @@ var pokemonRepository = (function() { //This is the IIFE wrap
                   var closeButtonElement = document.createElement('button');
                   closeButtonElement.classList.add('modal-close');
                   closeButtonElement.innerText = 'Close';
-                  closeButtonElement.addEventListener('click', hideModal);
-
+                  closeButtonElement.addEventListener('click', () => {    // delete , () => { again?
+                     hideModal();                                         // delete again?
+                     reject();                                            // delete again?
+                  });                                                     // delete again?
                   var titleElement = document.createElement('div');
                   titleElement.innerText = title;
 
@@ -86,10 +88,22 @@ var pokemonRepository = (function() { //This is the IIFE wrap
                 function hideModal() {
                   $modalContainer.classList.remove('is-visible');
                 }
+/* Shans advice 2020-07-06 maybe move the Liste-Item button here? NO, does not work.
+                var button = document.createElement('button', id='show-modal'); // create a button element (syntax correct but moved here from line57)
+                button.innerHTML = item.name; // set button innerText to be the Pokémon's name
+                    button.addEventListener('click', function(event) { // event listener to each newly created button
+//                        showDetails(item); //create function showDetails
+                        showModal(item);   //Shan: use show modal iso showDetails
+                    });
+/* Shans advice end 2020-07-06*/
                 // ==> T H I S  seems to "call" the hard coded HTML-show-details-button ==> has to be done by the pokempn buttons then
-                document.querySelector('#show-modal').addEventListener('click', () => { // display pokemon details on button click
-                  showModal('Modal title', 'This is the modal content!'); // include the pokemon name, pokemon-height somehow and pokemonImgUrl somehow
-                });
+//                document.querySelector('#show-modal').addEventListener('click', () => { // display pokemon details on button click
+//                  showModal('Modal title', 'This is the modal content!').then(function() { // include the pokemon name, pokemon-height somehow and pokemonImgUrl somehow
+//                    alert('confirmed!');      //delete again?           // delete .then again?
+//                  }, () => {                  //delete again?
+//                      alert('not confirmed'); //delete again?
+//                  });                         //delete again?
+//                });
 
                 window.addEventListener('keydown', (e) => {
                   if (e.key === 'Escape' && $modalContainer.classList.contains('is-visible')) {
@@ -97,12 +111,12 @@ var pokemonRepository = (function() { //This is the IIFE wrap
                   }
                 });
 
-                $modalContainer.addEventListener('click', (e) => { // don't close when user clicks OTUSIDE overlay
-                      var target = e.target;
-                  if (target === $modalContainer) { // close only if user clicks directly on the overlay,
-                    hideModal();
-                  }
-                }); // addEventListener end
+//                $modalContainer.addEventListener('click', (e) => { // don't close when user clicks OTUSIDE overlay
+//                      var target = e.target;
+//                  if (target === $modalContainer) { // close only if user clicks directly on the overlay,
+//                    hideModal();
+//                  }
+//                }); // addEventListener end
 /*  //T E S T revealed this seems to be useless code
                 // create structure to display pokemon details
                 function createModalElements (item){
@@ -202,16 +216,19 @@ var pokemonRepository = (function() { //This is the IIFE wrap
 
 
         /* make sure the code responsible for add the buttons from the array is being called correctly. (Point #4 and 5 in the 'Directions' section of the task) */
-       function addListItem(item) { //add a function addListItem with parameter 'pokemon'
+        function addListItem(item) { //add a function addListItem with parameter 'pokemon'
             var hitList = document.querySelectorAll('ul')[0]; // create a 'ul' element and assign  it to ul in HTML
             var listItem = document.createElement('li'); // create a list element
             listItem.classList.add('container'); // Add a class to the listItem using the classList.add method
 
-            var button = document.createElement('button', id='show-modal'); // create a button element (syntax correct but moved here from line57)
+//            var showModal = document.getElementById('show-modal').value;
+            var button = document.createElement('button', id = 'show-modal'); // create a button element (syntax correct but moved here from line57)
             button.innerHTML = item.name; // set button innerText to be the Pokémon's name
-                button.addEventListener('click', function(event) { // event listener to each newly created button
-                    showDetails(item); //create function showDetails
-                });
+            
+            button.addEventListener('click', function(event) { // event listener to each newly created button
+//                    showDetails(item); //create function showDetails
+                showModal(item); //create function showDetails
+            });
 
             button.classList.add('button'); // Add a class to the button using the classList.add method
             listItem.appendChild(button); // append the button to the list item as its child
