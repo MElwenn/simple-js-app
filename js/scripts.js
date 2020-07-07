@@ -18,7 +18,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
             json.results.forEach(function(item) { //forEach Loop to add pokemon objects instead of using the array
                 var item = { // Structure of the object "item" rather than " "Pokemon"
                     name: item.name, // Pokemon name returned by the API
-                    detailsUrl: item.url // url that provides details through the API
+                    detailsUrl: item.url, // url that provides details through the API
                 };
                 add(item); // adds the object to the loadList ("item" rather than " "Pokemon")
             }); // forEach Loop end
@@ -32,9 +32,13 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         return fetch(url).then(function(response) { //callback function to pass the Pokemon-details to the response [Object Response] IF promise resolved
             return response.json(); // function returns a promise-object and parses response into JSON data
         }).then(function(details) { // if promise resolved, all data passed in resolved function is availabe here
-            item.imageUrl = details.sprites.front_default; // GET the Pokémon details using the URL from the Pokémon object in the parameter
-            item.height = details.height;
+            //item.imageUrl = details.sprites.front_default; // GET the Pokémon details using the URL from the Pokémon object in the parameter
+            item.id = details.id;
+            item.imageUrl = ('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + details.id + '.png');
+            item.height = ('Height: ') + details.height + ('dm');
+            item.weight = ('Weight: ') + details.weight + ('dg');
             item.types = details.types;
+            // $image = $('<img>').attr('scr','http://pokeapi.co/media/img/' + poke.id + '.png')
         }).catch(function(e) { // ERROR handling
             console.error(e);
         });
@@ -90,12 +94,21 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         var titleElement = document.createElement('h1');
         titleElement.innerText = item.name;
 
-        var contentElement = document.createElement('p');
-        contentElement.innerText = item.height;
+        var heightElement = document.createElement('p');
+        heightElement.innerText = item.height;
 
+        var weightElement = document.createElement('p');
+        weightElement.innerText = item.weight;
+
+        var imageElement = new Image();
+        imageElement.src = item.imageUrl
+
+        // add elements to modal
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
-        modal.appendChild(contentElement);
+        modal.appendChild(heightElement);
+        modal.appendChild(weightElement);
+        modal.appendChild(imageElement);
         $modalContainer.appendChild(modal);
 
         $modalContainer.classList.add('is-visible');
