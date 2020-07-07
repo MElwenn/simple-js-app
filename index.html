@@ -9,21 +9,24 @@
 	  <link rel="stylesheet" type="text/css" href="css/styles.css">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
+
 <!-- body section -->
   <body>
     <h1 class="heading1">Pokedex</h1>
+
 <!-- Pokemon List -->
     <ul class="pokemon-list"></ul>
+
 <!-- Modal show details -->
-    <div id="modal-container"></div>
-    <button id='show-modal'>Show details</button>
-      <div id="detail-box"></div>
+    <div id="modal-container">
+      <div id="detail-box">
         <div id="pok-title"></div>
-        <div id="pok-content"></div>
-          <div id="pok-img-url"></div>
-          <p id="pok-height"></p>
-
-
+        <button id='show-modal'></button>
+        <button id='close-modal'></button>
+        <div id="pok-img-url"></div>
+        <p id="pok-height"></p>
+      </div>
+    </div>
 
 <!-- JavaScript -->
     <script src="js/promise-polyfill.js"></script>

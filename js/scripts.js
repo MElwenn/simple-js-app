@@ -18,7 +18,7 @@ var pokemonRepository = (function() { //This is the IIFE wrap
             json.results.forEach(function(item) { //forEach Loop to add pokemon objects instead of using the array
                 var item = { // Structure of the object "item" rather than " "Pokemon"
                     name: item.name, // Pokemon name returned by the API
-                    detailsUrl: item.url // url that provides details through the API
+                    detailsUrl: item.url, // url that provides details through the API
                 };
                 add(item); // adds the object to the loadList ("item" rather than " "Pokemon")
             }); // forEach Loop end
@@ -32,36 +32,53 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         return fetch(url).then(function(response) { //callback function to pass the Pokemon-details to the response [Object Response] IF promise resolved
             return response.json(); // function returns a promise-object and parses response into JSON data
         }).then(function(details) { // if promise resolved, all data passed in resolved function is availabe here
-            item.imageUrl = details.sprites.front_default; // GET the Pokémon details using the URL from the Pokémon object in the parameter
-            item.height = details.height;
+            //item.imageUrl = details.sprites.front_default; // GET the Pokémon details using the URL from the Pokémon object in the parameter
+            item.id = details.id;
+            item.imageUrl = ('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + details.id + '.png');
+            item.height = ('Height: ') + details.height + ('dm');
+            item.weight = ('Weight: ') + details.weight + ('dg');
             item.types = details.types;
+            // $image = $('<img>').attr('scr','http://pokeapi.co/media/img/' + poke.id + '.png')
         }).catch(function(e) { // ERROR handling
             console.error(e);
         });
     } // function loadDetails end
 
-    function getAll() { // get all items from the Pokemon array using the getAll method
+    function getAll() {
         return pokemonList;
     }
 
-    function add(pokemon) { // add pokemonList using the push method
+    function add(pokemon) {
         pokemonList.push(pokemon);
         addListItem(pokemon);
-    } // add pokemonList end
+    }
 
-    function showDetails(item) { // function show details "item" (the pokemon)
-        loadDetails(item).then(function() {
-            //console.log(item); THIS is to be replaced in task 1.8
-            showModal(id='show-modal', 'Modal title', 'This is the modal content!');
-        })  // function show details "item" (the pokemon) end
-    } // loadDetails(item).then(function() end
+    function addListItem(item) {
+        var hitList = document.querySelectorAll('ul')[0]; // create a 'ul' element and assign it to ul in HTML
+        var listItem = document.createElement('li'); // create a list element
+        listItem.classList.add('container'); // Add a class to the listItem using the classList.add method
 
+//            var showModal = document.getElementById('show-modal').value;
+        var button = document.createElement('button', id = 'show-modal'); // create a button element (syntax correct but moved here from line57)
+        button.innerHTML = item.name; // set button innerText to be the Pokémon's name
+
+        button.addEventListener('click', function(event) { // event listener to each newly created button
+//                    showDetails(item); //create function showDetails
+           loadDetails(item).then(function() {
+            showModal(item); //create function showDetails
+           })
+        });
+
+        button.classList.add('button'); // Add a class to the button using the classList.add method
+        listItem.appendChild(button); // append the button to the list item as its child
+        hitList.appendChild(listItem); // append the list item to the unordered list as its child
+    }; // addListItem end
 
     // function modalContainer to display pokemon details
-    (function() {
-      var $modalContainer = document.querySelector('#modal-container');
+    var $modalContainer = document.querySelector('#modal-container');
 
-      function showModal(title, text) {
+    function showModal(item) {
+        console.log(item)
         // Clear all existing modal content
         $modalContainer.innerHTML = '';
 
@@ -75,62 +92,39 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         closeButtonElement.addEventListener('click', hideModal);
 
         var titleElement = document.createElement('h1');
-        titleElement.innerText = title;
+        titleElement.innerText = item.name;
 
-        var contentElement = document.createElement('p');
-        contentElement.innerText = text;
+        var heightElement = document.createElement('p');
+        heightElement.innerText = item.height;
 
+        var weightElement = document.createElement('p');
+        weightElement.innerText = item.weight;
+
+        var imageElement = new Image();
+        imageElement.src = item.imageUrl
+
+        // add elements to modal
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
-        modal.appendChild(contentElement);
+        modal.appendChild(heightElement);
+        modal.appendChild(weightElement);
+        modal.appendChild(imageElement);
         $modalContainer.appendChild(modal);
 
         $modalContainer.classList.add('is-visible');
-      }
+    } // function showModal(item) end
 
-      function hideModal() {
+    function hideModal() {
         $modalContainer.classList.remove('is-visible');
-      }
-      // ==> T H I S  seems to "call" the hard coded HTML-show-details-button ==> has to be done by the pokempn buttons then
-      document.querySelector('#show-modal').addEventListener('click', () => { // display pokemon details on button click
-        showModal('Modal title', 'This is the modal content!'); // include the pokemon name, pokemon-height somehow and pokemonImgUrl somehow
-      });
+    }
 
-      window.addEventListener('keydown', (e) => {
+    window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && $modalContainer.classList.contains('is-visible')) {
-          hideModal();
+            hideModal();
         }
-      });
+    });
 
-      $modalContainer.addEventListener('click', (e) => { // don't close when user clicks OTUSIDE overlay
-            var target = e.target;
-        if (target === $modalContainer) { // close only if user clicks directly on the overlay,
-          hideModal();
-        }
-      }); // addEventListener end
-
-    })(); // function modalContainer to display pokemon details end
-
-  // H I E R ? }) // loadDetails(item).then(function() end
-
-
-        /* make sure the code responsible for add the buttons from the array is being called correctly. (Point #4 and 5 in the 'Directions' section of the task) */
-       function addListItem(item) { //add a function addListItem with parameter 'pokemon'
-            var hitList = document.querySelectorAll('ul')[0]; // create a 'ul' element and assign  it to ul in HTML
-            var listItem = document.createElement('li'); // create a list element
-            listItem.classList.add('container'); // Add a class to the listItem using the classList.add method
-
-            var button = document.createElement('button'); // create a button element (syntax correct but moved here from line57)
-            button.innerHTML = item.name; // set button innerText to be the Pokémon's name
-                button.addEventListener('click', function(event) { // event listener to each newly created button
-                    showDetails(item); //create function showDetails
-                });
-
-            button.classList.add('button'); // Add a class to the button using the classList.add method
-            listItem.appendChild(button); // append the button to the list item as its child
-            hitList.appendChild(listItem); // append the list item to the unordered list as its child
-        }; // addListItem end
-    //} // function show details "item" (the pokemon) end
+//} // function show details "item" (the pokemon) end
 
     return { //ERROR: Uncaught SyntaxError: Illegal return statement //return all items from the pokemonList to make it available outside the IIFE
         add: add,
@@ -138,16 +132,13 @@ var pokemonRepository = (function() { //This is the IIFE wrap
         addListItem: addListItem,
         loadList: loadList,
         loadDetails: loadDetails, //add loadDetails
-        showDetails: showDetails, //add showDetails
-        showModal: showModal      //add showModals
     }; // return end
+
 })(); // Wrapping IIFE end
 
-pokemonRepository.loadList().then(function() {
-    // Now the data is loaded!
-});
-
 // outside IIFE-Wrap
-pokemonRepository.getAll().forEach(function(item) { // forEach loop to make data accessable outside IIFE Wrap
-    pokemonRepository.addListItem(item); // make data accessable outside IIFE Wrap
-});
+pokemonRepository.loadList().then(function(){
+    pokemonRepository.getAll().forEach(function (item) {
+        pokemonRepository.addListItem(item);
+    });
+})
